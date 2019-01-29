@@ -1,0 +1,12 @@
+install.packages("jsonlite")
+require("httr")
+require("jsonlite")
+
+base <- read_file("C:\\Users\\rguerrerop\\Downloads\\568050101475.xml")
+get_likes <- GET(base)
+get_likes_text <- content(get_likes,"text")
+get_likes_text_json <- fromJSON(get_likes_text,flatten = TRUE)
+get_likes_df <- as.data.frame(get_likes_text_json)
+View(get_likes_df)
+library(readr)
+write.csv(get_likes_df,"obtuve mis likes.csv")
